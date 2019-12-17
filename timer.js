@@ -6,6 +6,7 @@ const timer = container.querySelector('h2');
 const startPauseBtn = container.querySelector('.start-pause');
 const workBreakBtn = container.querySelector('.work-break');
 const resetBtn = container.querySelector('.reset');
+const opBtn = Array.from(container.getElementsByClassName('op-button'));
 const breakDuration = container.querySelector('.break-duration > h4');
 const workDuration = container.querySelector('.work-duration > h4');
 
@@ -149,10 +150,12 @@ function updateDuration(e) {
 
 /****** EVENT LISTENERS ******/
 
+window.addEventListener('load', updateTimerDisplayAndValue);
+
 startPauseBtn.addEventListener('click', toggleTimerCountdown);
 
 resetBtn.addEventListener('click', resetTimer);
 
 workBreakBtn.addEventListener('click', toggleTimerMode);
 
-window.addEventListener('load', updateTimerDisplayAndValue);
+opBtn.forEach(btn => btn.addEventListener('click', updateDuration));
