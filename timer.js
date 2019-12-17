@@ -53,15 +53,18 @@ function toggleTimerCountdown(e) {
     }
 }
 
+function updateTimerDisplayAndValue() {
+    timer.textContent = breakDuration.textContent;
+    timerDisplayValue = Number(timer.textContent.substring(0, timer.textContent.indexOf(':')));
+}
+
 function toggleTimerMode(e) {
     if (e.target.textContent === 'BREAK') {
         e.target.textContent = 'WORK';
-        timer.textContent = breakDuration.textContent;
-        timerDisplayValue = timer.textContent.substring(0, timer.textContent.indexOf(':'));
+        updateTimerDisplayAndValue();
     } else {
         e.target.textContent = 'BREAK';
-        timer.textContent = workDuration.textContent;
-        timerDisplayValue = timer.textContent.substring(0, timer.textContent.indexOf(':'));
+        updateTimerDisplayAndValue();
     }
 }
 
