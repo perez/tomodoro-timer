@@ -5,6 +5,7 @@ const timer = document.querySelector('h2');
 
 let minutes = 25;
 let seconds = 60;
+let interval;
 
 /****** TIMER FUNCTIONS ******/
 
@@ -21,4 +22,12 @@ function secondsDecrement() {
     if (seconds < 10) {
         seconds = '0' + seconds;
     }
+}
+
+function timerCountdown() {
+    interval = setInterval(() => {
+        minutesDecrement();
+        secondsDecrement();
+        timer.textContent = `${minutes}:${seconds}`
+    }, 1000);
 }
