@@ -93,6 +93,60 @@ function resetTimer() {
     toggleWorkBreakBtn();
 }
 
+function updateDuration(e) {
+    let durationDisplay = e.target.parentElement.children[1];        
+    
+    if (e.target.textContent === '-') {
+        switch (true) {
+            case durationDisplay.textContent === '45:00':
+                durationDisplay.textContent = '40:00';
+                break;
+            case durationDisplay.textContent === '40:00':
+                durationDisplay.textContent = '35:00';
+                break;
+            case durationDisplay.textContent === '35:00':
+                durationDisplay.textContent = '30:00';
+                break;
+            case durationDisplay.textContent === '30:00':
+                durationDisplay.textContent = '25:00';
+                break;
+            case durationDisplay.textContent=== '25:00':
+                durationDisplay.textContent = '20:00';
+                break;
+            case durationDisplay.textContent === '15:00':
+                durationDisplay.textContent = '10:00';
+                break;
+            case durationDisplay.textContent === '10:00':
+                durationDisplay.textContent = '5:00';
+                break;
+        }       
+    } else if (e.target.textContent === '+') {
+        switch (true) {
+            case durationDisplay.textContent === '5:00':
+                durationDisplay.textContent = '10:00';
+                break;
+            case durationDisplay.textContent === '10:00':
+                durationDisplay.textContent = '15:00';
+                break;
+            case durationDisplay.textContent === '20:00':
+                durationDisplay.textContent = '25:00';
+                break;
+            case durationDisplay.textContent === '25:00':
+                durationDisplay.textContent = '30:00';
+                break;
+            case durationDisplay.textContent === '30:00':
+                durationDisplay.textContent = '35:00';
+                break;
+            case durationDisplay.textContent === '35:00':
+                durationDisplay.textContent= '40:00';
+                break;
+            case durationDisplay.textContent === '40:00':
+                durationDisplay.textContent = '45:00';
+                break;
+        }
+    }
+}
+
 /****** EVENT LISTENERS ******/
 
 startPauseBtn.addEventListener('click', toggleTimerCountdown);
