@@ -9,6 +9,8 @@ const resetBtn = container.querySelector('.reset');
 const breakDuration = container.querySelector('.break-duration > h4');
 const workDuration = container.querySelector('.work-duration > h4');
 
+let timerDisplayValue;
+
 let minutes = 25;
 let seconds = 60;
 let interval;
@@ -48,6 +50,18 @@ function toggleTimerCountdown(e) {
     } else {
         e.target.textContent = 'START';
         clearInterval(interval);
+    }
+}
+
+function toggleTimerMode(e) {
+    if (e.target.textContent === 'BREAK') {
+        e.target.textContent = 'WORK';
+        timer.textContent = breakDuration.textContent;
+        timerDisplayValue = timer.textContent.substring(0, timer.textContent.indexOf(':'));
+    } else {
+        e.target.textContent = 'BREAK';
+        timer.textContent = workDuration.textContent;
+        timerDisplayValue = timer.textContent.substring(0, timer.textContent.indexOf(':'));
     }
 }
 
