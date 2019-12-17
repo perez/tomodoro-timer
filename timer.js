@@ -79,3 +79,5 @@ function resetTimer() {
 startPauseBtn.addEventListener('click', toggleTimerCountdown);
 
 resetBtn.addEventListener('click', resetTimer);
+
+workBreakBtn.addEventListener('click', toggleTimerMode);
