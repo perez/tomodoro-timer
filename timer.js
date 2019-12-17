@@ -11,14 +11,14 @@ const workDuration = container.querySelector('.work-duration > h4');
 
 let timerDisplayValue;
 
-let minutes = 25;
+let minutes;
 let seconds = 60;
 let interval;
 
 /****** TIMER FUNCTIONS ******/
 
 function minutesDecrement() {
-    if (minutes === 25) minutes -= 1;
+    if (minutes === timerDisplayValue) minutes -= 1;
     if (seconds === '00') {
         minutes -= 1;
         seconds = 60;
@@ -54,8 +54,13 @@ function toggleTimerCountdown(e) {
 }
 
 function updateTimerDisplayAndValue() {
-    timer.textContent = breakDuration.textContent;
+    if (workBreakBtn.textContent === 'BREAK') {
+        timer.textContent = workDuration.textContent;
+    } else {
+        timer.textContent = breakDuration.textContent;
+    }
     timerDisplayValue = Number(timer.textContent.substring(0, timer.textContent.indexOf(':')));
+    minutes = timerDisplayValue;
 }
 
 function toggleTimerMode(e) {
@@ -71,7 +76,7 @@ function toggleTimerMode(e) {
 function resetTimer() {
     if (startPauseBtn.textContent = 'PAUSE') startPauseBtn.textContent = 'START';
     clearInterval(interval);
-    minutes = 25;
+    minutes = timerDisplayValue;
     seconds = 60;
     timer.textContent = `${minutes}:00`;
     document.title = 'Tomodoro Timer';
@@ -84,3 +89,5 @@ startPauseBtn.addEventListener('click', toggleTimerCountdown);
 resetBtn.addEventListener('click', resetTimer);
 
 workBreakBtn.addEventListener('click', toggleTimerMode);
+
+window.addEventListener('load', updateTimerDisplayAndValue);
