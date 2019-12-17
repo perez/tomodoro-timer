@@ -15,3 +15,10 @@ function minutesDecrement() {
         seconds = 60;
     }
 }
+
+function secondsDecrement() {
+    seconds -= 1;
+    if (seconds < 10) {
+        seconds = '0' + seconds;
+    }
+}
