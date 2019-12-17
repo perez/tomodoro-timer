@@ -43,13 +43,23 @@ function timerCountdown() {
 
 /****** BUTTON FUNCTIONS ******/
 
+function toggleWorkBreakBtn() {
+    if (startPauseBtn.textContent === 'PAUSE') {
+        workBreakBtn.setAttribute('disabled', 'disabled');
+    } else if (startPauseBtn.textContent === 'START') {
+        workBreakBtn.removeAttribute('disabled');
+    }
+}
+
 function toggleTimerCountdown(e) {
     if (e.target.textContent === 'START') {
         e.target.textContent = 'PAUSE';
         timerCountdown();
+        toggleWorkBreakBtn();
     } else {
         e.target.textContent = 'START';
         clearInterval(interval);
+        toggleWorkBreakBtn();
     }
 }
 
@@ -80,6 +90,7 @@ function resetTimer() {
     seconds = 60;
     timer.textContent = `${minutes}:00`;
     document.title = 'Tomodoro Timer';
+    toggleWorkBreakBtn();
 }
 
 /****** EVENT LISTENERS ******/
