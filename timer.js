@@ -1,9 +1,11 @@
 /****** VARIABLES ******/
 
-const timerTitle = document.querySelector('h1');
-const timer = document.querySelector('h2');
-const startPauseBtn = document.querySelector('.start-pause');
-const resetBtn = document.querySelector('.reset');
+const container = document.getElementById('container');
+const timerTitle = container.querySelector('h1');
+const timer = container.querySelector('h2');
+const startPauseBtn = container.querySelector('.start-pause');
+const workBreakBtn = container.querySelector('.work-break');
+const resetBtn = container.querySelector('.reset');
 
 let minutes = 25;
 let seconds = 60;
