@@ -30,7 +30,8 @@ function timerCountdown() {
     interval = setInterval(() => {
         minutesDecrement();
         secondsDecrement();
-        timer.textContent = `${minutes}:${seconds}`
+        timer.textContent = `${minutes}:${seconds}`;
+        document.title = `(${minutes}:${seconds}) Tomodoro Timer`;
     }, 1000);
 }
 
@@ -52,6 +53,7 @@ function resetTimer() {
     minutes = 25;
     seconds = 60;
     timer.textContent = `${minutes}:00`;
+    document.title = 'Tomodoro Timer';
 }
 
 /****** EVENT LISTENERS ******/
