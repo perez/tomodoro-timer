@@ -3,6 +3,7 @@
 const timerTitle = document.querySelector('h1');
 const timer = document.querySelector('h2');
 const startPauseBtn = document.querySelector('.start-pause');
+const resetBtn = document.querySelector('.reset');
 
 let minutes = 25;
 let seconds = 60;
@@ -56,3 +57,5 @@ function resetTimer() {
 /****** EVENT LISTENERS ******/
 
 startPauseBtn.addEventListener('click', toggleTimerCountdown);
+
+resetBtn.addEventListener('click', resetTimer);
