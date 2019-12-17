@@ -6,6 +6,8 @@ const timer = container.querySelector('h2');
 const startPauseBtn = container.querySelector('.start-pause');
 const workBreakBtn = container.querySelector('.work-break');
 const resetBtn = container.querySelector('.reset');
+const breakDuration = container.querySelector('.break-duration > h4');
+const workDuration = container.querySelector('.work-duration > h4');
 
 let minutes = 25;
 let seconds = 60;
