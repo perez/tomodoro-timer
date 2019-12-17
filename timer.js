@@ -45,6 +45,14 @@ function toggleTimerCountdown(e) {
     }
 }
 
+function resetTimer() {
+    if (startPauseBtn.textContent = 'PAUSE') startPauseBtn.textContent = 'START';
+    clearInterval(interval);
+    minutes = 25;
+    seconds = 60;
+    timer.textContent = `${minutes}:00`;
+}
+
 /****** EVENT LISTENERS ******/
 
 startPauseBtn.addEventListener('click', toggleTimerCountdown);
