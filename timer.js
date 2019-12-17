@@ -31,3 +31,15 @@ function timerCountdown() {
         timer.textContent = `${minutes}:${seconds}`
     }, 1000);
 }
+
+/****** BUTTON FUNCTIONS ******/
+
+function toggleTimerCountdown(e) {
+    if (e.target.textContent === 'START') {
+        e.target.textContent = 'PAUSE';
+        timerCountdown();
+    } else {
+        e.target.textContent = 'START';
+        clearInterval(interval);
+    }
+}
