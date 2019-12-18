@@ -16,6 +16,8 @@ let minutes;
 let seconds = 60;
 let interval;
 
+const alarmAudio = new Audio('./assets/analog-alarm.wav');
+
 /****** TIMER FUNCTIONS ******/
 
 function minutesDecrement() {
