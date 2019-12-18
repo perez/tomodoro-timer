@@ -47,8 +47,10 @@ function timerCountdown() {
 function toggleWorkBreakBtn() {
     if (startPauseBtn.textContent === 'PAUSE') {
         workBreakBtn.setAttribute('disabled', 'disabled');
+        opBtn.forEach(btn => btn.style.visibility = ('hidden'))
     } else if (startPauseBtn.textContent === 'START') {
         workBreakBtn.removeAttribute('disabled');
+        opBtn.forEach(btn => btn.style.visibility = ('visible'))
     }
 }
 
@@ -75,6 +77,7 @@ function updateTimerDisplayAndValue() {
 }
 
 function toggleTimerMode(e) {
+    resetTimer();
     if (e.target.textContent === 'BREAK') {
         e.target.textContent = 'WORK';
         updateTimerDisplayAndValue();
@@ -95,7 +98,7 @@ function resetTimer() {
 }
 
 function updateDuration(e) {
-    let durationDisplay = e.target.parentElement.children[1];        
+    let durationDisplay = e.target.parentElement.children[1];
     
     if (e.target.textContent === '-') {
         switch (true) {
@@ -120,9 +123,15 @@ function updateDuration(e) {
             case durationDisplay.textContent === '10:00':
                 durationDisplay.textContent = '5:00';
                 break;
+            case durationDisplay.textContent === '5:00':
+                durationDisplay.textContent = '1:00';
+                break;
         }       
     } else if (e.target.textContent === '+') {
         switch (true) {
+            case durationDisplay.textContent === '1:00':
+                durationDisplay.textContent = '5:00';
+                break;
             case durationDisplay.textContent === '5:00':
                 durationDisplay.textContent = '10:00';
                 break;
@@ -146,6 +155,7 @@ function updateDuration(e) {
                 break;
         }
     }
+    updateTimerDisplayAndValue();
 }
 
 /****** EVENT LISTENERS ******/
