@@ -18,6 +18,27 @@ let interval;
 
 const alarmAudio = new Audio('./assets/analog-alarm.wav');
 
+/****** HELPER FUNCTIONS ******/
+
+function updateTimerDisplayAndValue() {
+    if (workBreakBtn.textContent === 'BREAK') {
+        timer.textContent = workDuration.textContent;
+    } else {
+        timer.textContent = breakDuration.textContent;
+    }
+    timerDisplayValue = Number(timer.textContent.substring(0, timer.textContent.indexOf(':')));
+    minutes = timerDisplayValue;
+}
+
+function stopAudio() {
+    if (!alarmAudio.paused) {
+        alarmAudio.pause();
+        alarmAudio.currentTime = 0;
+    } else if (alarmAudio.paused) {
+        alarmAudio.currentTime = 0;
+    }
+}
+
 /****** TIMER FUNCTIONS ******/
 
 function minutesDecrement() {
@@ -41,7 +62,17 @@ function timerCountdown() {
         secondsDecrement();
         timer.textContent = `${minutes}:${seconds}`;
         document.title = `(${minutes}:${seconds}) Tomodoro Timer`;
+        if (timer.textContent === '0:00') playAlarm();
     }, 1000);
+}
+
+function playAlarm() {
+    clearInterval(interval);
+    startPauseBtn.setAttribute('disabled', 'disabled');
+    if (workBreakBtn.getAttribute('disabled') === 'disabled') {
+        workBreakBtn.removeAttribute('disabled');
+    }
+    alarmAudio.play();
 }
 
 /****** BUTTON FUNCTIONS ******/
@@ -78,19 +109,21 @@ function updateTimerDisplayAndValue() {
     minutes = timerDisplayValue;
 }
 
-function toggleTimerMode(e) {
+function toggleTimerMode() {
     resetTimer();
-    if (e.target.textContent === 'BREAK') {
-        e.target.textContent = 'WORK';
+    if (workBreakBtn.textContent === 'BREAK') {
+        workBreakBtn.textContent = 'WORK';
         updateTimerDisplayAndValue();
     } else {
-        e.target.textContent = 'BREAK';
+        workBreakBtn.textContent = 'BREAK';
         updateTimerDisplayAndValue();
     }
 }
 
 function resetTimer() {
+    stopAudio();
     if (startPauseBtn.textContent = 'PAUSE') startPauseBtn.textContent = 'START';
+    if(startPauseBtn.getAttribute('disabled') === 'disabled') startPauseBtn.removeAttribute('disabled');
     clearInterval(interval);
     minutes = timerDisplayValue;
     seconds = 60;
