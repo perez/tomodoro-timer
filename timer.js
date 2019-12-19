@@ -10,13 +10,13 @@ const opBtn = Array.from(container.getElementsByClassName('op-button'));
 const breakDuration = container.querySelector('.break-duration > h4');
 const workDuration = container.querySelector('.work-duration > h4');
 
+const alarmAudio = new Audio('./assets/analog-alarm.wav');
+
 let timerDisplayValue;
 
 let minutes;
 let seconds = 60;
 let interval;
-
-const alarmAudio = new Audio('./assets/analog-alarm.wav');
 
 /****** HELPER FUNCTIONS ******/
 
@@ -80,14 +80,13 @@ function playAlarm() {
 function toggleWorkBreakBtn() {
     if (startPauseBtn.textContent === 'PAUSE') {
         workBreakBtn.setAttribute('disabled', 'disabled');
-        opBtn.forEach(btn => btn.style.visibility = ('hidden'))
     } else if (startPauseBtn.textContent === 'START') {
         workBreakBtn.removeAttribute('disabled');
-        opBtn.forEach(btn => btn.style.visibility = ('visible'))
     }
 }
 
 function toggleTimerCountdown(e) {
+    opBtn.forEach(btn => btn.setAttribute('disabled', 'disabled'));
     if (e.target.textContent === 'START') {
         e.target.textContent = 'PAUSE';
         timerCountdown();
@@ -122,6 +121,7 @@ function toggleTimerMode() {
 
 function resetTimer() {
     stopAudio();
+    opBtn.forEach(btn => btn.removeAttribute('disabled'));
     if (startPauseBtn.textContent = 'PAUSE') startPauseBtn.textContent = 'START';
     if(startPauseBtn.getAttribute('disabled') === 'disabled') startPauseBtn.removeAttribute('disabled');
     clearInterval(interval);
