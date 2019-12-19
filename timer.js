@@ -15,7 +15,7 @@ let timerDisplayValue;
 
 let minutes;
 let seconds = 60;
-let interval;
+let countdown;
 
 /****** HELPER FUNCTIONS ******/
 
@@ -29,11 +29,19 @@ function updateTimerDisplayAndValue() {
     minutes = timerDisplayValue;
 }
 
+function toggleWorkBreakBtn() {
+    if (startPauseBtn.textContent === 'PAUSE') {
+        workBreakBtn.setAttribute('disabled', 'disabled');
+    } else if (startPauseBtn.textContent === 'START') {
+        workBreakBtn.removeAttribute('disabled');
+    }
+}
+
 function stopAudio() {
     if (!alarmAudio.paused) {
         alarmAudio.pause();
         alarmAudio.currentTime = 0;
-    } else if (alarmAudio.paused) {
+    } else {
         alarmAudio.currentTime = 0;
     }
 }
@@ -41,7 +49,7 @@ function stopAudio() {
 /****** TIMER FUNCTIONS ******/
 
 function minutesDecrement() {
-    if (minutes === timerDisplayValue) minutes -= 1;
+    if (minutes === timerDisplayValue) { minutes -= 1 };
     if (seconds === '00') {
         minutes -= 1;
         seconds = 60;
@@ -50,13 +58,11 @@ function minutesDecrement() {
 
 function secondsDecrement() {
     seconds -= 1;
-    if (seconds < 10) {
-        seconds = '0' + seconds;
-    }
+    if (seconds < 10) { seconds = '0' + seconds };
 }
 
 function timerCountdown() {
-    interval = setInterval(() => {
+    countdown = setInterval(() => {
         minutesDecrement();
         secondsDecrement();
         timer.textContent = `${minutes}:${seconds}`;
@@ -66,35 +72,24 @@ function timerCountdown() {
 }
 
 function playAlarm() {
-    clearInterval(interval);
+    clearInterval(countdown);
     startPauseBtn.setAttribute('disabled', 'disabled');
-    if (workBreakBtn.getAttribute('disabled') === 'disabled') {
-        workBreakBtn.removeAttribute('disabled');
-    }
+    if (workBreakBtn.getAttribute('disabled') === 'disabled') { workBreakBtn.removeAttribute('disabled') };
     alarmAudio.play();
 }
 
 /****** BUTTON FUNCTIONS ******/
-
-function toggleWorkBreakBtn() {
-    if (startPauseBtn.textContent === 'PAUSE') {
-        workBreakBtn.setAttribute('disabled', 'disabled');
-    } else if (startPauseBtn.textContent === 'START') {
-        workBreakBtn.removeAttribute('disabled');
-    }
-}
 
 function toggleTimerCountdown() {
     opBtn.forEach(btn => btn.setAttribute('disabled', 'disabled'));
     if (startPauseBtn.textContent === 'START') {
         startPauseBtn.textContent = 'PAUSE';
         timerCountdown();
-        toggleWorkBreakBtn();
     } else {
         startPauseBtn.textContent = 'START';
-        clearInterval(interval);
-        toggleWorkBreakBtn();
+        clearInterval(countdown);
     }
+    toggleWorkBreakBtn();
 }
 
 function updateTimerDisplayAndValue() {
@@ -109,21 +104,16 @@ function updateTimerDisplayAndValue() {
 
 function toggleTimerMode() {
     resetTimer();
-    if (workBreakBtn.textContent === 'BREAK') {
-        workBreakBtn.textContent = 'WORK';
-        updateTimerDisplayAndValue();
-    } else {
-        workBreakBtn.textContent = 'BREAK';
-        updateTimerDisplayAndValue();
-    }
+    (workBreakBtn.textContent === 'BREAK') ? workBreakBtn.textContent = 'WORK' : workBreakBtn.textContent = 'BREAK';
+    updateTimerDisplayAndValue();
 }
 
 function resetTimer() {
     stopAudio();
     opBtn.forEach(btn => btn.removeAttribute('disabled'));
-    if (startPauseBtn.textContent = 'PAUSE') startPauseBtn.textContent = 'START';
-    if(startPauseBtn.getAttribute('disabled') === 'disabled') startPauseBtn.removeAttribute('disabled');
-    clearInterval(interval);
+    if (startPauseBtn.textContent = 'PAUSE') { startPauseBtn.textContent = 'START' };
+    if (startPauseBtn.getAttribute('disabled') === 'disabled') { startPauseBtn.removeAttribute('disabled') };
+    clearInterval(countdown);
     minutes = timerDisplayValue;
     seconds = 60;
     timer.textContent = `${minutes}:00`;
@@ -198,8 +188,8 @@ window.addEventListener('load', updateTimerDisplayAndValue);
 
 startPauseBtn.addEventListener('click', toggleTimerCountdown);
 
-resetBtn.addEventListener('click', resetTimer);
-
 workBreakBtn.addEventListener('click', toggleTimerMode);
+
+resetBtn.addEventListener('click', resetTimer);
 
 opBtn.forEach(btn => btn.addEventListener('click', updateDuration));
