@@ -1,7 +1,6 @@
 /****** VARIABLES ******/
 
 const container = document.getElementById('container');
-const timerTitle = container.querySelector('h1');
 const timer = container.querySelector('h2');
 const startPauseBtn = container.querySelector('.start-pause');
 const workBreakBtn = container.querySelector('.work-break');
@@ -85,14 +84,14 @@ function toggleWorkBreakBtn() {
     }
 }
 
-function toggleTimerCountdown(e) {
+function toggleTimerCountdown() {
     opBtn.forEach(btn => btn.setAttribute('disabled', 'disabled'));
-    if (e.target.textContent === 'START') {
-        e.target.textContent = 'PAUSE';
+    if (startPauseBtn.textContent === 'START') {
+        startPauseBtn.textContent = 'PAUSE';
         timerCountdown();
         toggleWorkBreakBtn();
     } else {
-        e.target.textContent = 'START';
+        startPauseBtn.textContent = 'START';
         clearInterval(interval);
         toggleWorkBreakBtn();
     }
