@@ -2,17 +2,17 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 @font-face {
     font-family: Biryani;
-    src: url(./assets/Biryani/Biryani-Regular.ttf);
+    src: url(./assets/biryani/biryani-regular.ttf);
     font-weight: normal;
 }
 @font-face {
-    font-family: 'Anonymous Pro-Regular';
-    src: url(./assets/Anonymous_Pro/AnonymousPro-Regular.ttf);
+    font-family: SourceCodePro;
+    src: url(./assets/source_code_pro/sourcecodepro-regular.ttf);
     font-weight: normal;
 }
 body {
     background-color: #232530;
-    font-family: "Biryani", sans-serif;
+    font-family: Biryani, sans-serif;
     text-align: center;
 }
 header {
@@ -51,7 +51,7 @@ button {
     background-color: transparent;
     color: #B877DB;
     cursor: pointer;
-    font-family: 'Anonymous Pro', monospace;
+    font-family: SourceCodePro, monospace;
     font-weight: normal;
 }
 p.pomodoro-link {
