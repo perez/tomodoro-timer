@@ -90,8 +90,8 @@ a:hover::before {
     width: 100%;
 }
 .timer {
-    border-left: solid 1px #E11A64;
-    border-right: solid 1px #E11A64;
+    border-left: solid 1px #B877DB;
+    border-right: solid 1px #B877DB;
 }
 .timer-button {
     border: 2px solid #B877DB;
